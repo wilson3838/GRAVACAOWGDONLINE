@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>GRAVAÇÃOWGDSONLINE</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #pagamentoContainer, #programaContainer {
+            margin-top: 30px;
+        }
+
+        #qrcode {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+        }
+
+        .botoes button {
+            margin: 5px;
+        }
+
+        video {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container de pagamento -->
+    <div id="pagamentoContainer">
+        <h1>Pagamento para Acesso ao Programa</h1>
+        <p>Para acessar o programa, faça o pagamento de <strong>R$5,00</strong> via PIX.</p>
+        <p>Use o QR Code abaixo para realizar o pagamento:</p>
+        <img id="qrcode" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=00020126330014br.gov.bcb.pix01113667173385652040000530398654055.005802BR5924WILSON DOS SANTOS SILVA6009SAO PAULO62070503***6304BFD3" alt="QR Code do PIX">
+
+        <p>Chave PIX (CPF): <strong>366.717.338-56</strong></p>
+        <button onclick="mostrarPrograma()">Já paguei</button>
+    </div>
+
+    <!-- Container do programa (inicialmente oculto) -->
+    <div id="programaContainer" class="hidden">
+        <!-- Relógio -->
+        <div id="relogio"></div>
+
+        <!-- Título e Boas-Vindas -->
+        <h1>GRAVAÇÃOWGDSONLINE</h1>
+        <h2 id="boasVindas">👋 Seja bem-vindo ao GRAVAÇÃOWGDSONLINE!</h2>
+
+        <!-- Botões -->
+        <div class="botoes">
+            <button id="startCapture">Iniciar Captura</button>
+            <button id="startRecording" disabled>Iniciar Gravação</button>
+            <button id="stopRecording" disabled>Parar Gravação</button>
+        </div>
+
+        <!-- Vídeo de Pré-Visualização -->
+        <video id="preview" autoplay playsinline muted></video>
+
+        <!-- Aviso sobre áudio -->
+        <div id="audioWarning" class="aviso">
+            ⚠️ Para o áudio do jogo funcionar corretamente, clique na tela capturada e ative o modo de tela cheia.
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 18/04/2025 Wilson - Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+    <script>
+        function mostrarPrograma() {
+            document.getElementById("pagamentoContainer").style.display = "none";
+            document.getElementById("programaContainer").style.display = "block";
+        }
+
+        // Relógio
+        function atualizarRelogio() {
+            const agora = new Date();
+            const horas = agora.getHours().toString().padStart(2, '0');
+            const minutos = agora.getMinutes().toString().padStart(2, '0');
+            const segundos = agora.getSeconds().toString().padStart(2, '0');
+            document.getElementById('relogio').textContent = `🕒 ${horas}:${minutos}:${segundos}`;
+        }
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
+    </script>
+
+</body>
+</html>
